@@ -1,0 +1,3 @@
+key_name: test
+key_file: "{{ ansible_env.HOME }}/.ssh/test-id-rsa"
+key_file_public: "{{ ansible_env.HOME }}/.ssh/test-id-rsa.pub"

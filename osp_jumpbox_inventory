@@ -1,0 +1,6 @@
+[all:vars]
+cloud_name=ospcloud
+region_name=RegionOne
+
+[jumpbox]
+workstation-1afc.rhpds.opentlc.com ansible_ssh_user=cloud-user ansible_ssh_private_key_file=~/.ssh/openstack.pem

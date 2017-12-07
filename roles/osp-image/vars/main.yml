@@ -1,0 +1,5 @@
+image_name: 'rhel-guest'
+image_file_name: 'rhel-guest-image-7.2-20151102.0.x86_64.qcow2'
+image_container_format: 'bare'
+image_disk_format: 'qcow2'
+

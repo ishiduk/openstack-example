@@ -1,0 +1,29 @@
+---
+
+- name: Create security-group
+  os_security_group:
+    cloud: "{{ cloud_name }}"
+    state: present
+    name: "{{ sg_name }}"
+    description: "{{ sg_description }}"
+  tags:
+    - tested
+
+- name: Add security-group tcp rules
+  os_security_group_rule:
+    cloud: "{{ cloud_name }}"
+    security_group: "{{ item.sg }}"
+    protocol: "{{ item.protocol }}"
+    port_range_min: "{{ item.port_range_min }}"
+    port_range_max: "{{ item.port_range_max }}"
+    remote_ip_prefix: "{{ item.remote_ip_prefix }}"
+  with_items: "{{ sg_rule_info }}"
+  tags:
+    - tested
+
+- name: Add security-group icmp rule
+  os_security_group_rule:
+    cloud: "{{ cloud_name }}"
+    security_group: "{{ sg_name }}"
+    protocol: "icmp"
+    remote_ip_prefix: "0.0.0.0/0"

@@ -1,0 +1,14 @@
+---
+
+- name: Create key
+  user:
+    name: "{{ ansible_env.USER }}"
+    generate_ssh_key: yes
+    ssh_key_file: "{{ key_file }}"
+
+- name: Register ssh-key for VM
+  os_keypair:
+    cloud: "{{ cloud_name }}"
+    state: present
+    name: "{{ key_name }}"
+    public_key_file: "{{ key_file_public }}"

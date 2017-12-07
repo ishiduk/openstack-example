@@ -1,0 +1,8 @@
+# network information
+network_info:
+  - { name: 'ext_network', external: 'true' }
+  - { name: 'int_network', external: 'false' }
+
+# router information
+router_name: router1
+router_network: ext_network

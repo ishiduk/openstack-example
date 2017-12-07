@@ -1,0 +1,52 @@
+---
+
+- name: Create network
+  os_network:
+    cloud: "{{ cloud_name }}"
+    state: present
+    name: "{{ item.name }}"
+    external: " {{ item.external }}"
+  with_items: "{{ network_info }}"
+
+- name: Create subnetA
+  os_subnet:
+    cloud: "{{ cloud_name }}"
+    state: present
+    network_name: ext_network
+    name: ext_subnet
+    cidr: 10.10.10.0/24
+    dns_nameservers:
+      - 8.8.8.7
+      - 8.8.8.8
+    host_routes:
+      - destination: 0.0.0.0/0
+        nexthop: 10.10.10.0
+      - destination: 192.168.0.0/24
+        nexthop: 192.168.0.0
+
+- name: Create subnetB
+  os_subnet:
+    cloud: "{{ cloud_name }}"
+    state: present
+    network_name: int_network
+    name: int_subnet
+    cidr: 20.20.20.0/24
+    dns_nameservers:
+      - 8.8.8.7
+      - 8.8.8.8
+    host_routes:
+      - destination: 0.0.0.0/0
+        nexthop: 192.168.0.0
+      - destination: 192.168.0.0/24
+        nexthop: 192.168.0.0
+
+- name: Create router
+  os_router:
+    cloud: "{{ cloud_name }}"
+    state: present
+    name: "{{ router_name }}"
+    network: "{{ router_network }}"
+    external_fixed_ips:
+      - subnet: ext_subnet
+    interfaces:
+      - int_subnet

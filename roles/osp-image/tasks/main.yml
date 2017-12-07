@@ -1,0 +1,15 @@
+---
+
+- name: Downloade qcow image
+  get_url:
+    url: "http://www.opentlc.com/download/osp_advanced_networking/{{ image_file_name }}"
+    dest: "{{ansible_env.HOME }}/"
+
+- name: Create VM image
+  os_image:
+    cloud: "{{ cloud_name }}"
+    name: "{{ image_name }}"
+    container_format: "{{ image_container_format }}"
+    disk_format: "{{ image_disk_format }}"
+    state: present
+    filename: "{{ ansible_env.HOME }}/{{ image_file_name }}"

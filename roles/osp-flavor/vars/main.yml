@@ -1,0 +1,4 @@
+flavor_info:
+  - { name: 'small', ram: '2048', vcpus: '1', disk: '10' }
+  - { name: 'medium', ram: '4096', vcpus: '2', disk: '10' }
+  - { name: 'large', ram: '8192', vcpus: '4', disk: '10' }
