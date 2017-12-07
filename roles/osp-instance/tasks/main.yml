@@ -1,6 +1,6 @@
 ---
 
-- name: Create instances
+- name: Create instance "{{ item.instance_name }}"
   os_server:
     cloud: "{{ cloud_name }}"
     name: "{{ item.instance_name }}"
@@ -17,10 +17,10 @@
       cat /tmp/openstack.pub >> /home/cloud-user/.ssh/authorized_keys
       curl -o /tmp/internal.repo http://www.opentlc.com/download/ansible_bootcamp/repo/internal.repo
       cp /tmp/internal.repo /etc/yum.repos.d/internal.repo
-  register: "{{ item.instance_register }}"
+  register: instance_ip
   with_items: "{{ instance_info }}"
 
-- name: Add floating IP
+- name: Add floating IP for instance "{{ item.instance_name }}"
   os_floating_ip:
     cloud: "{{ cloud_name }}"
     state: present
@@ -29,12 +29,13 @@
     network: ext_network
     wait: true
     timeout: 180
-  register: "{{ item.fip_register }}"
+  register: instance_floating_ip
   with_items: "{{ instance_info }}"
 
-- name: Show webserver floating IP
-  debug: var=frontend1-floatingip.floating_ip.floating_ip_address
-
-- name: Show webserver private IP
-  debug: var=frontend1-ip.openstack.private_v4
-
+- name: Wait for "{{ item.instance_name }}" to be available
+  wait_for:
+      host: "{{ instance_floating_ip.floating_ip.floating_ip_address }}"
+      port: 22
+      search_regex: OpenSSH
+      timeout: 600
+  delegate_to: "{{ inventory_hostname }}"
