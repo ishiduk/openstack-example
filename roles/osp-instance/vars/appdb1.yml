@@ -1,0 +1,8 @@
+---
+
+instance_name: appdb1
+instance_group: appdbs
+instance_deployment: dev
+instance_flavor: small
+instance_keypair: test
+

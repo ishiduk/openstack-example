@@ -1,0 +1,8 @@
+---
+
+instance_name: app2
+instance_group: apps
+instance_deployment: dev
+instance_flavor: small
+instance_keypair: test
+

@@ -1,0 +1,8 @@
+---
+
+instance_name: frontend1
+instance_group: frontends
+instance_deployment: dev
+instance_flavor: small
+instance_keypair: test
+

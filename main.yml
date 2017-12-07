@@ -3,13 +3,13 @@
 - name: Create virtual enviroment for 3-tier
   hosts: jumpbox
   roles:
-  - osp-network
-  - osp-flavor
-  - osp-image
-  - osp-securitygroup
-  - osp-keypair
+#  - osp-network
+#  - osp-flavor
+#  - osp-image
+#  - osp-securitygroup
+#  - osp-keypair
   - osp-instance
-  - osp-facts
+#  - osp-facts
 
 #- hosts: frontends
 #  become: yes

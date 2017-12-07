@@ -1,6 +1,7 @@
+---
 instance_info:
-  - { instance_name: 'frontend1', instance_image: 'rhel-guest', instance_group: 'frontends', instance_deployment: 'dev', instance_flavor: 'small', instance_security_group: 'ICMP_and_SSH', instance_keypair: 'test' }
-  - { instance_name: 'app1', instance_image: 'rhel-guest', instance_group: 'apps', instance_deployment: 'dev', instance_flavor: 'small', instance_security_group: 'ICMP_and_SSH', instance_keypair: 'test' }
-  - { instance_name: 'app21', instance_image: 'rhel-guest', instance_group: 'apps', instance_deployment: 'dev', instance_flavor: 'small', instance_security_group: 'ICMP_and_SSH', instance_keypair: 'test' }
-  - { instance_name: 'appdb1', instance_image: 'rhel-guest', instance_group: 'appdbs', instance_deployment: 'dev', instance_flavor: 'small', instance_security_group: 'ICMP_and_SSH', instance_keypair: 'test' }
+  - { instance_name: 'frontend1', instance_image: 'rhel-guest', instance_group: 'frontends', instance_deployment: 'dev', instance_flavor: 'small', instance_security_group: 'ICMP_and_SSH', instance_keypair: 'test', instance_register: 'floating_ip_frontend1' }
+  - { instance_name: 'app1', instance_image: 'rhel-guest', instance_group: 'apps', instance_deployment: 'dev', instance_flavor: 'small', instance_security_group: 'ICMP_and_SSH', instance_keypair: 'test', instance_register: 'floating_ip_app1' }
+  - { instance_name: 'app2', instance_image: 'rhel-guest', instance_group: 'apps', instance_deployment: 'dev', instance_flavor: 'small', instance_security_group: 'ICMP_and_SSH', instance_keypair: 'test', instance_register: 'floating_ip_app2' }
+  - { instance_name: 'appdb1', instance_image: 'rhel-guest', instance_group: 'appdbs', instance_deployment: 'dev', instance_flavor: 'small', instance_security_group: 'ICMP_and_SSH', instance_keypair: 'test', instance_register: 'floating_ip_appdb1' }
 
