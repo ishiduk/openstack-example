@@ -1,0 +1,24 @@
+---
+
+- name: Fetching instance information
+  hosts: jumpbox
+  roles:
+  - osp-facts
+
+- hosts: frontends
+  become: yes
+  roles: 
+    - repo-setup
+    - haproxy-setup
+
+- hosts: apps
+  become: yes
+  roles:
+    - repo-setup
+    - tomcat-setup
+
+- hosts: appdbs
+  become: yes
+  roles:
+    - repo-setup
+    - geerlingguy.postgresql
