@@ -1,9 +1,14 @@
 ---
 
+- name: Check existance qcow2 image
+  stat: path="{{ ansible_env.HOME }}"/"{{ image_file_name }}"
+  register: imagefile
+
 - name: Download qcow image
   get_url:
     url: "http://www.opentlc.com/download/osp_advanced_networking/{{ image_file_name }}"
     dest: "{{ansible_env.HOME }}/"
+  when: not imagefile.stat.exists
 
 - name: Create VM image
   os_image:
