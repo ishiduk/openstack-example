@@ -17,4 +17,4 @@
   - name: check != 200
     fail:
        msg: "Could not receive http_status_code '200'"
-when: response_http.status_code != 200
+    when: response_http.status_code != 200
