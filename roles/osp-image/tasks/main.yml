@@ -1,7 +1,7 @@
 ---
 
 - name: Check existance qcow2 image
-  stat: path="{{ ansible_env.HOME }}"/"{{ image_file_name }}"
+  stat: path="{{ ansible_env.HOME }}/{{ image_file_name }}"
   register: imagefile
 
 - name: Download qcow image
